@@ -1,23 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Conta Bancária</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <select>
-        <option value="0" selected>Selecione aqui</option>
-    </select>
-    <input class="input-form" id="valor" placeholder="Valor" />
-    <select name="select">
-        <option selected value="sacar">Sacar</option>
-        <option value="depositar">Depositar</option>
-      </select>
-    <button onclick="confirmar()">Confirmar</button>
+    <link rel="stylesheet" href="style.css" />
+  </head>
 
-    <script src="script.js"></script>
-</body>
+  <body onload="selecionarContas()">
+    <header class="header">
+      <h1>Banco Florianopolitano</h1>
+    </header>
+
+    <main>
+      <form id="form">
+        <div class="formGroup">
+          <label>Conta:</label>
+          <select id="contas" class="field">
+            <option value="0" selected>Selecione aqui</option>
+          </select>
+        </div>
+
+        <div>
+          <label>Valor:</label>
+          <input class="field" id="valor" type="number" placeholder="Valor" />
+        </div>
+
+        <div>
+          <label>Operação:</label>
+          <select name="select" class="field">
+            <option sele value="selected">(Selecionar)</option>
+            <option sele value="sacar">Sacar</option>
+            <option value="depositar">Depositar</option>
+          </select>
+        </div>
+
+        <button onclick="confirmar()">Confirmar</button>
+      </form>
+      <strong id="mensagem"></strong>
+    </main>
+  </body>
+  <script src="script.js"></script>
 </html>
