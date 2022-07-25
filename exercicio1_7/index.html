@@ -17,7 +17,7 @@
       <form id="form">
         <div class="formGroup">
           <label>Conta:</label>
-          <select id="contas" class="field">
+          <select id="contas">
             <option value="0" selected>Selecione aqui</option>
           </select>
         </div>
@@ -29,14 +29,14 @@
 
         <div>
           <label>Operação:</label>
-          <select name="select" class="field">
+          <select name="select" id="operacao">
             <option sele value="selected">(Selecionar)</option>
             <option sele value="sacar">Sacar</option>
             <option value="depositar">Depositar</option>
           </select>
         </div>
 
-        <button onclick="confirmar()">Confirmar</button>
+        <button onclick="verificaOperacao()">Confirmar</button>
       </form>
       <strong id="mensagem"></strong>
     </main>
