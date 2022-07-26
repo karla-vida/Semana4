@@ -29,10 +29,13 @@ function verificaOperacao() {
   let valor = parseFloat(document.getElementById("valor").value);
   let idConta = parseInt(contas.value);
   let opcaoSelecionada = operacao.options[operacao.selectedIndex].text;
-  if (opcaoSelecionada == "Sacar") {
-    sacar(valor, idConta);
-  } else {
-    depositar(valor, idConta);
+  let processar = validaForm();
+  if (processar) {
+    if (opcaoSelecionada == "Sacar") {
+      sacar(valor, idConta);
+    } else {
+      depositar(valor, idConta);
+    }
   }
 }
 
@@ -91,4 +94,18 @@ function depositar(valor, id) {
       "\nSeu saldo atual é: R$" +
       saldoFinal
   );
+}
+
+function nuloVazio(form) {
+  let v = document.getElementById(form).value;
+  alert(v);
+  return v == null || v == "" || v == 0;
+}
+
+function validaForm() {
+  if (nuloVazio("contas") || nuloVazio("valor") || nuloVazio("operacao")) {
+    alert("Campo não preenchido.");
+    return false;
+  }
+  return true;
 }
