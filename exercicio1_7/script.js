@@ -3,16 +3,19 @@ let contasClientes = [
     id: 1,
     nome: "Cliente 01",
     saldo: 500,
+    senha: "primeiro",
   },
   {
     id: 2,
     nome: "Cliente 02",
     saldo: 3000,
+    senha: "segundo",
   },
   {
     id: 3,
     nome: "Cliente 03",
     saldo: 5000,
+    senha: "terceiro",
   },
 ];
 
@@ -24,13 +27,28 @@ function selecionarContas() {
     contas.innerHTML += `<option value=${conta.id}>${conta.nome} </option>`;
   });
 }
+function validarSenha(senha, id) {
+  let resultado =false;
+  contasClientes.forEach((conta) => {
+    if (conta.id == id && conta.senha == senha) {
+      resultado = true;
+    }
+  });
+
+  return resultado;
+}
 
 function verificaOperacao() {
   let valor = parseFloat(document.getElementById("valor").value);
   let idConta = parseInt(contas.value);
   let opcaoSelecionada = operacao.options[operacao.selectedIndex].text;
   let processar = validaForm();
-  if (processar) {
+  let senha = document.getElementById("senha").value;
+  let senhaValidada = validarSenha(senha, idConta);
+  if(!senhaValidada) {
+    return alert("Senha inválida");
+  }
+  if (processar && senhaValidada) {
     if (opcaoSelecionada == "Sacar") {
       sacar(valor, idConta);
     } else {
@@ -98,7 +116,6 @@ function depositar(valor, id) {
 
 function nuloVazio(form) {
   let v = document.getElementById(form).value;
-  alert(v);
   return v == null || v == "" || v == 0;
 }
 
